@@ -233,7 +233,7 @@ transition: 0.5s;
 .skill-item-icon{
     display: flex;
     align-items: center;
-    width: 20rem;
+    width: 90%;
     padding: 1rem;
     border-radius: 10px;
     gap: 15px;
@@ -284,6 +284,7 @@ font-size: 4rem ;
     color:#000000;
     cursor: pointer;
     transition: .5s;
+    user-select: none;
 }
 .project-types-item:hover{
     transform: scale(1.1);
@@ -431,11 +432,12 @@ font-size: 4rem ;
 
 .experience-container{
     background-color:#F3F4F6 ;
+    padding-bottom: 10rem;
 }
 .experience-heading{
     text-align: center;
     font-size: 4rem;
-    padding: 10rem 0;
+    padding: 10rem ;
 }
 .experince-item-container{
     display: flex;
@@ -445,7 +447,7 @@ font-size: 4rem ;
 }
 .experience-item{
     width: 90rem;
-    height: 60rem;
+    height: fit-content;
     background-color: #FFFFFF;
     padding: 3rem;
     border-radius: 10px;
@@ -483,6 +485,7 @@ font-size: 4rem ;
 }
 .experience-item ul li{
     margin-left: 20px;
+    
 }
 li::marker{
     color: #5f58f3;
@@ -617,6 +620,7 @@ li::marker{
 .contact-btn{
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 15px 50px;
     background-color: #494597;
     width: 100%;
@@ -624,7 +628,7 @@ li::marker{
     font-size: 2rem;
     border-radius: 10px;
     transition: .5s;
-   
+    gap: 1rem
 }
 .contact-btn:hover{
     transform: scale(1.1);
@@ -634,7 +638,6 @@ li::marker{
 form {
     width: 100%;
     margin: 0 auto;
-    padding: 20px;
 }
 
 input[type="text"],
@@ -646,6 +649,7 @@ textarea {
     margin-bottom: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
+    font-size: 2rem;
 }
 label {
     display: block;
@@ -1006,4 +1010,171 @@ label {
         right: 12px;
         bottom: 10px;
     }
+}
+
+/* ============================================================
+   Featured Projects — data-driven cards + detail modal
+   (appended; overrides earlier .project-item rules by cascade)
+   ============================================================ */
+.project-item-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+    gap: 3rem;
+    width: 100%;
+    max-width: 114rem;
+    margin: 4rem auto 0;
+    padding: 0 2rem;
+    justify-content: center;
+}
+.project-item{
+    max-width: none;
+    width: auto;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -12px rgba(0,0,0,.25);
+    transition: transform .4s, box-shadow .4s;
+    display: flex;
+    flex-direction: column;
+}
+.project-item:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 20px 35px -14px rgba(0,0,0,.35);
+}
+
+/* image / gradient tile */
+.thumb{
+    position: relative;
+    height: 17rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.thumb.web{ background: linear-gradient(135deg,#6D66F1,#8B5CF6); }
+.thumb.frontend{ background: linear-gradient(135deg,#14B8A6,#22C55E); }
+.thumb.technical{ background: linear-gradient(135deg,#1e293b,#334155); }
+.thumb svg{ width: 6rem; height: 6rem; color: #fff; opacity: .95; }
+.thumb.technical::before{
+    content: "";
+    position: absolute; inset: 0; opacity: .15;
+    background-image: linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);
+    background-size: 22px 22px;
+}
+.thumb-img{
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+.thumb .cat-chip{
+    position: absolute; left: 1.2rem; bottom: 1.2rem;
+    background: rgba(255,255,255,.9); color: #111827;
+    font-size: 1.1rem; font-weight: 600; padding: .4rem 1rem; border-radius: 2rem;
+    z-index: 1;
+}
+.thumb .badge{
+    position: absolute; right: 1.2rem; top: 1.2rem;
+    background: #fff; color: #5C55DA;
+    font-size: 1.1rem; font-weight: 700; padding: .4rem 1rem; border-radius: 2rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,.15); z-index: 1;
+}
+
+.project-body{
+    padding: 1.8rem;
+    display: flex; flex-direction: column; flex: 1;
+}
+.project-item h3{ font-size: 2rem; margin-bottom: 1rem; color: #111827; }
+.project-item .blurb{
+    font-size: 1.4rem; color: #4b5563; line-height: 1.6; flex: 1;
+}
+.project-item .tags{
+    display: flex; flex-wrap: wrap; gap: .7rem; margin: 1.4rem 0;
+}
+.project-item .tags span{
+    background: #C7D2FE; color: #5f58f3;
+    font-size: 1.2rem; padding: .4rem 1rem; border-radius: 2rem;
+}
+.read-more{
+    align-self: flex-start; background: none; border: none;
+    color: #5C55DA; font-size: 1.4rem; font-weight: 600; cursor: pointer; padding: 0;
+    font-family: inherit;
+}
+.read-more:hover{ text-decoration: underline; }
+
+/* detail modal */
+.project-overlay{
+    position: fixed; inset: 0;
+    background: rgba(17,24,39,.55); backdrop-filter: blur(3px);
+    display: none; align-items: center; justify-content: center;
+    z-index: 9999; padding: 2rem;
+}
+.project-overlay.open{ display: flex; }
+.project-modal{
+    background: #fff; border-radius: 20px;
+    max-width: 72rem; width: 100%; max-height: 88vh; overflow-y: auto;
+    padding: 4rem; position: relative;
+    animation: projectPop .35s ease;
+    scrollbar-width: none;
+
+}
+@keyframes projectPop{
+    from{ transform: translateY(20px); opacity: 0; }
+    to{ transform: translateY(0); opacity: 1; }
+}
+.project-modal .modal-close{
+    position: absolute; right: 2rem; top: 1.6rem;
+    background: none; border: none; font-size: 3rem; color: #5C55DA;
+    cursor: pointer; line-height: 1;
+}
+.project-modal .modal-hero{
+    height: 24rem; border-radius: 12px; overflow: hidden; margin-bottom: 2.4rem;
+}
+.project-modal .modal-hero img{ width: 100%; height: 100%; object-fit: cover; }
+.project-modal .modal-head{
+    display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; padding-right: 3rem;
+}
+.project-modal h2{ font-size: 3.4rem; color: #111827; }
+.project-modal .badge-lg{
+    background: #6D66F1; color: #fff; font-size: 1.2rem; font-weight: 700;
+    padding: .5rem 1.2rem; border-radius: 2rem;
+}
+.project-modal .overview{
+    font-size: 1.6rem; color: #4b5563; line-height: 1.7; margin: 2rem 0;
+}
+.project-modal h4{ font-size: 1.9rem; margin: 2rem 0 1rem; color: #111827; }
+.project-modal .tags{ display: flex; flex-wrap: wrap; gap: .7rem; }
+.project-modal .tags span{
+    background: #C7D2FE; color: #5f58f3; font-size: 1.3rem;
+    padding: .4rem 1rem; border-radius: 2rem;
+}
+.project-modal .feature-list{
+    list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2rem;
+}
+.project-modal .feature-list li{
+    font-size: 1.4rem; color: #4b5563; line-height: 1.5;
+    padding-left: 2.2rem; position: relative;
+}
+.project-modal .feature-list li::before{
+    content: "✓"; position: absolute; left: 0; color: #22C55E; font-weight: 700;
+}
+.project-modal .modal-actions{
+    display: flex; gap: 1.4rem; margin-top: 3rem; flex-wrap: wrap;
+}
+.btn{
+    display: inline-flex; align-items: center; gap: .8rem;
+    font-size: 1.4rem; font-weight: 600; padding: 1.2rem 2.2rem;
+    border-radius: 1rem; cursor: pointer; text-decoration: none;
+    transition: .3s; border: none; font-family: inherit;
+}
+.btn svg{ width: 1.8rem; height: 1.8rem; }
+.btn-code{ background: #111827; color: #fff; }
+.btn-code:hover{ background: #000; transform: translateY(-2px); }
+.btn-live{ background: #6D66F1; color: #fff; }
+.btn-live:hover{ background: #5C55DA; transform: translateY(-2px); }
+.btn-disabled{ background: #e5e7eb; color: #9ca3af; cursor: not-allowed; }
+
+@media (max-width:720px){
+    .project-modal .feature-list{ grid-template-columns: 1fr; }
+    .project-modal{ padding: 2.4rem; }
+    .project-modal h2{ font-size: 2.6rem; }
+    .project-modal .modal-hero{ height: 18rem; }
 }
