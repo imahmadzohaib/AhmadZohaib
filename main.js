@@ -109,7 +109,7 @@ const PROJECTS=[
    tech:['C++17','OOP','Makefile / CMake'],
    overview:'A console application that keeps the day-to-day records of a working farm across livestock, fields, stock and staff — doubling as a showcase of object-oriented design in C++17 (inheritance, polymorphism, templates, RAII).',
    features:['Four sections: Animals, Crops, Inventory, Staff','Full CRUD with unique, sorted IDs','Twelve record types','Consolidated report with totals & low-stock alerts','File persistence (.dat) with defensive loading','Robust input validation','No memory leaks (CI-verified)','Template Method + Abstract Factory patterns'],
-   github:'https://github.com/imahmadzohaib/Farm-Management',live:''},
+   github:'https://github.com/imahmadzohaib/Farm-Management',live:'https://imahmadzohaib.github.io/AhmadZohaib'},
 ];
 
 const projectGrid=document.getElementById('projectGrid');
