@@ -610,13 +610,14 @@ li::marker{
 .conatct-form{
     display: flex;
     flex-direction: column;
-    margin-bottom: 50px;
+    
+    margin: 0px 30px 50px 30px;
 }
 .contact-icon{
     display: flex;
     align-items: center;
     gap: 10px;
-    margin: auto;
+    
 }
 .contact-btn{
     display: flex;
