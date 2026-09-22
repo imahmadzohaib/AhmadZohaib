@@ -610,6 +610,7 @@ li::marker{
 .conatct-form{
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 47rem;
 }
 .contact-icon{
