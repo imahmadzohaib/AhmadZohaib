@@ -607,10 +607,11 @@ li::marker{
 .information a:hover{
     text-decoration: underline;
 }
-.conatct-form{
+.contact-form{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items:center ;
+    justify
     width: 47rem;
 }
 .contact-icon{
