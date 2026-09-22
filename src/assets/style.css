@@ -610,8 +610,7 @@ li::marker{
 .conatct-form{
     display: flex;
     flex-direction: column;
-    
-    margin: 0px 30px 50px 30px;
+    width: 47rem;
 }
 .contact-icon{
     display: flex;
@@ -853,7 +852,7 @@ label {
         height: 45rem;
         width: 35rem;
     }
-    .information{
+    .information, .contact-form{
         width: 34rem;
     }
     .major-container{
@@ -935,6 +934,9 @@ label {
         align-items:center ;
         align-self: center;
     }
+    .contact-form{
+            width: 58rem;
+    }
     .contact-item-container{
         flex-direction: column;
         justify-content: center;
@@ -990,7 +992,7 @@ label {
     .education-item{
         width: 40rem;
     }
-    .information{
+    .information, .contact-form{
         width: 40rem;
     }
     .skill-item{
